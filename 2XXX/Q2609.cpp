@@ -13,7 +13,7 @@ int GCD(int a, int b)
 	else return GCD(b, a % b);
 }
 
-int main()
+int main55()
 {
 	int A, B; cin >> A >> B;
 	int count = 0;
