@@ -1,33 +1,35 @@
 #include <iostream>
-#include <cstring>
 #include <stack>
+#include <string>
 using namespace std;
 
 int main()
 {
+	int count; string s;
 	while (true)
 	{
-		string s; cin >> s;
-		stack <int> bracket_B;
-		stack <int> bracket_S;
-		for (int i = 0; i < s.size(); i++)
+		getline(cin, s);
+		if (s.length() == 1 && s[0] == '.') { break; }
+		count = 0;
+		stack <int> bracket;
+		while (s[count] != '.')
 		{
-			if (s[i] == '[') { bracket_B.push(1); }
-			else if ((s[i] == ']') && !(bracket_B.empty())) { bracket_B.pop(); }
-			else if (s[i] == '(') { bracket_S.push(1); }
-			else if ((s[i] == ')') && !(bracket_S.empty())) { bracket_S.pop(); }
-			else if (s[i] == '.') { break; }
-			else {}
+			if (s[count] == '[') { bracket.push('['); }
+			else if ((s[count] == ']'))
+			{
+				if (bracket.empty()) { bracket.push(0); break; }
+				if (bracket.top() == '[') { bracket.pop(); }
+			}
+			else if (s[count] == '(') { bracket.push('('); }
+			else if ((s[count] == ')'))
+			{
+				if (bracket.empty()) { bracket.push(0); break; }
+				if (bracket.top() == '(') { bracket.pop(); }
+			}
+			count++;
 		}
-		if ((bracket_B.empty()) && (bracket_S.empty()))
-		{
-			cout << "yes" << endl;
-		}
-		else
-		{
-			cout << "no" << endl;
-		}
-
+		if (bracket.empty()) { cout << "yes" << endl; }
+		else { cout << "no" << endl; }
 	}
 	return 0;
 }
