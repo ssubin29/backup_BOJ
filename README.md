@@ -1,2 +1,2 @@
 # backup_BOJ
-# 백준 문제풀이 백업
+# Baekjoon Online Judge 문제풀이 백업
